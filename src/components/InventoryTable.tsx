@@ -44,9 +44,7 @@ const InventoryTable: React.FC = () => {
 
   const handleSave = () => {
     if (editingProduct) {
-      dispatch(
-        updateProduct({ ...editingProduct, price: `$${editingProduct?.price}` })
-      );
+      dispatch(updateProduct(editingProduct));
     }
     setIsEditDialogOpen(false);
   };
@@ -80,7 +78,7 @@ const InventoryTable: React.FC = () => {
               >
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.category}</TableCell>
-                <TableCell>{product.price}</TableCell>
+                <TableCell>${product.price}</TableCell>
                 <TableCell>{product.quantity}</TableCell>
                 <TableCell>
                   {isAdmin && (
@@ -140,11 +138,7 @@ const InventoryTable: React.FC = () => {
               <TextField
                 label="Price"
                 type="number"
-                value={
-                  typeof editingProduct.price === "string"
-                    ? editingProduct.price?.slice(1)
-                    : editingProduct.price
-                }
+                value={editingProduct.price}
                 onChange={(e) =>
                   setEditingProduct({
                     ...editingProduct,

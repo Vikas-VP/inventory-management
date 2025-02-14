@@ -71,7 +71,11 @@ const inventorySlice = createSlice({
       .addCase(fetchInventory.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload?.map((item: Product, index: number) => {
-          return { ...item, id: index + 1 };
+          return {
+            ...item,
+            id: index + 1,
+            price: item?.price?.toString().slice(1),
+          };
         });
       })
       .addCase(fetchInventory.rejected, (state, action) => {

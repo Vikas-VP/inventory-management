@@ -8,7 +8,7 @@ const InventoryStats: React.FC = () => {
   const actualProductsPresent = products?.filter((item) => !item?.disabled);
   const totalProducts = actualProductsPresent?.length;
   const totalStoreValue = actualProductsPresent.reduce(
-    (sum, product: any) => sum + product.price.slice(1) * product.quantity,
+    (sum, product: any) => sum + product.price * product.quantity,
     0
   );
   const outOfStock = actualProductsPresent.filter(
